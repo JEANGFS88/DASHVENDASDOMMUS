@@ -45,3 +45,16 @@ st.plotly_chart(grafico_vendas, use_container_width=True)
 # Exibir tabela de dados
 st.subheader("📋 Dados Detalhados")
 st.dataframe(df_filtrado)
+
+import pandas as pd
+import streamlit as st
+
+@st.cache_data
+def carregar_dados():
+    url = "https://raw.githubusercontent.com/SEU_USUARIO/dashboard-vendas/main/Relatorio_Consolidado.xlsx"
+    df = pd.read_excel(url, sheet_name="Resumo Consolidado", engine="openpyxl")
+    df['ANO_MES'] = df['ANO_MES'].astype(str)
+    return df
+
+df = carregar_dados()
+
