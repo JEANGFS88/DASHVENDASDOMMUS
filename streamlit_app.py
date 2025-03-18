@@ -58,3 +58,8 @@ def carregar_dados():
 
 df = carregar_dados()
 
+uploaded_file = st.file_uploader("Envie o arquivo Excel", type=["xlsx"])
+
+if uploaded_file is not None:
+    df = pd.read_excel(uploaded_file, sheet_name="Resumo Consolidado", engine="openpyxl")
+    st.write(df)
